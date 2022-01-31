@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+int row, col,row2, col2;
+int choice1;
+int choice2;
+int cards[5][5];
+
+
+//creates a 5x5 array
+void createArray(){
+  //int cards[5][5];
+  for(int r =0; r<5; r++){
+    for(int i=0;i<5;i++){
+      cards[r][i]=rand()%25+1;//fills row1 w ran nums 1-25
+    }
+  }
+  }
+
+
+
+//gets users choices and shows what they selected
+void getChoices(){
+cout<<endl<<endl<<"Please enter the row followed by the column of the card you want to choose."<<endl<<endl;
+
+  cin>>row>>col;
+  choice1 = cards[row-1][col-1];//assuming the user does not know arrays are zero based
+  cout<< "Your first card is "<< choice1 <<endl<<endl;
+
+  cout<<"Select the position of your second card choice."<<endl;
+  cin>> row2 >>col2;
+  choice2 = cards[row2-1][col2-1];
+  cout <<"Your second card is "<< choice2 <<endl<<endl;
+}
+
+
+
+//compare and indicate if user has found a match
+void findMatch(){
+  if(choice1==choice2){
+    cout<<"Nice! You found a match." <<endl<<endl;
+  }else{
+    cout<<"Whoops, That wasn't a match."<<endl<<endl;
+  }
+} 
+
+
+
+void playAgain(){
+  char yn; //wills tore user's decision to keep playing 
+  cout<<"Would you like to play again? Enter Y or N."<<endl;
+  cin>>yn;
+  if(yn =='Y'){
+    createArray();
+    getChoices();
+    findMatch();
+    playAgain();
+
+  }else{
+    cout<<"Okay, Have A Nice Day !!"<<endl;
+  }
+}
+
+
+
+int main() {
+  createArray();
+  getChoices();
+  findMatch();
+  playAgain();
+}
